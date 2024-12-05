@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'ACS Community',
-  description: 'A community platform for educational technology',
+  description: 'A community platform for edtech',
 }
 
 export default function RootLayout({
