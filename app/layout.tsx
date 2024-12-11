@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 // import { Inter } from 'next/font/google'
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
+import Sidebar from "@/components/sidebar";
+import Navbar from "@/components/navbar";
+import RightPanel from "@/components/right-panel";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -46,7 +49,24 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          {/* <div className="min-h-screen bg-background">
+            <Navbar />
+            <main className="container mx-auto py-6">
+              <div className="grid grid-cols-1 md:grid-cols-[27%_43%_27%] gap-6">
+                <div className="hidden md:block auto-cols-max">
+                  <Sidebar />
+                </div>
+                <div className="auto-cols-max">{children}</div>
+                <div className="hidden md:block auto-cols-max">
+                  <RightPanel />
+                </div>
+              </div>
+            </main>
+          </div> */}
+          <div className="min-h-screen bg-background">
+            <Navbar />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

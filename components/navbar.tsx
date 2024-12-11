@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { Bell, MessageSquare, Search, User } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
+import { Bell, MessageSquare, Search, User } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Navbar() {
-  const[selected, setSelected] = useState('কমিউনিটি');
+  const [selected, setSelected] = useState("কমিউনিটি");
   const navItems = [
     { label: "হোম", href: "/" },
     { label: "বার্ষিক পরিক্ষার প্রস্তুতি", href: "/exam" },
     { label: "শিক্ষাক্রম", href: "/curriculum" },
     { label: "আমাদের দল", href: "/team" },
-    { label: "কমিউনিটি", href: "/community" }
+    { label: "কমিউনিটি", href: "/community" },
   ];
 
   return (
@@ -21,7 +21,13 @@ export default function Navbar() {
         <div className="flex h-20 items-center justify-between">
           <div className="container flex items-center gap-8">
             <Link href="/" className="flex-shrink-0">
-              <Image src="Logo.svg" alt="ACS" width={49} height={60} style={{objectFit:"contain"}} />
+              <Image
+                src="Logo.svg"
+                alt="ACS"
+                width={49}
+                height={60}
+                style={{ objectFit: "contain" }}
+              />
             </Link>
             <div className="relative hidden md:flex items-center space-x-8">
               {navItems.map((item, index) => (
@@ -29,9 +35,10 @@ export default function Navbar() {
                   key={index}
                   onClick={() => setSelected(item.label)}
                   className={`px-3 py-2 rounded-md text-xl font-medium transition-colors
-                    ${item.label === selected 
-                      ? "text-green-600 " 
-                      : "text-gray-700 hover:text-green-500"
+                    ${
+                      item.label === selected
+                        ? "text-green-600 after:content-[''] after:block after:w-8 after:h-1 after:bg-green-500 after:mx-auto"
+                        : "text-gray-700 hover:text-green-500"
                     }`}
                 >
                   {item.label}
@@ -61,5 +68,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

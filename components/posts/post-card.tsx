@@ -9,36 +9,49 @@ import {
   DropdownMenuItem,
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
+import { Post, Reaction } from "@/lib/types";
+import { useState } from "react";
+import ReactionModal from "./reaction-modal";
 
-interface PostCardProps {
-  post: {
-    id: number;
-    author: {
-      name: string;
-      avatar: string;
-      role: string;
-    };
-    content: string;
-    timestamp: string;
-    likes_count: number;
-    comments: number;
-    shares: number;
-  };
-}
+// interface PostCardProps {
+//   post: {
+//     id: number;
+//     author: {
+//       name: string;
+//       avatar: string;
+//       role: string;
+//     };
+//     content: string;
+//     timestamp: string;
+//     // reaction: {
+//     likes_count: number;
+//     comments: number;
+//     shares: number;
+//   };
+// }
 
-export default function PostCard({ post }: PostCardProps) {
+export default function PostCard({ post }: { post: Post }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const reactionCounts = post.reaction?.reduce((acc, reaction) => {
+  //   acc[reaction.type] = (acc[reaction.type] || 0) + 1;
+  //   return acc;
+  // }, {} as Record<Reaction, number>);
+
   return (
     <div className="max-w-2xl bg-white rounded-2xl border-[1px] shadow-sm p-5 space-y-4">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-3 pt-2">
           <div className="relative">
-            <img
+            <Image
               src={post.author.avatar}
               alt={post.author.name}
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full object-cover"
             />
-            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white"></div>
           </div>
           <div>
             <div className="flex items-center space-x-2">
@@ -103,7 +116,10 @@ export default function PostCard({ post }: PostCardProps) {
       {/* Engagement Stats */}
       <div className="flex items-center justify-between pt-2 pr-2">
         {/* <div className="flex items-center space-x-2"> */}
-        <button className="flex items-center space-x-1 text-gray-600">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center space-x-1 text-gray-600"
+        >
           <svg
             className="w-5 h-5"
             fill="none"
@@ -133,6 +149,12 @@ export default function PostCard({ post }: PostCardProps) {
         </button>
         {/* </div> */}
       </div>
+      <ReactionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        reactions={post.reaction}
+        // reactionCounts={reactionCounts}
+      />
     </div>
   );
 }

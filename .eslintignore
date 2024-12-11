@@ -1,0 +1,20 @@
+# Ignore node_modules directory
+node_modules/
+.next/
+# Ignore build output
+dist/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore specific files
+# src/someFileToIgnore.js
+
+# Ignore all test files
+# **/*.test.js
+# **/*.spec.js
+
+# Ignore configuration files
+.eslintrc.js
+.eslintignore
