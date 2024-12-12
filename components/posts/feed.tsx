@@ -1,12 +1,13 @@
 "use client";
 
 import PostCard from "@/components/posts/post-card";
-import { Reaction } from "@/lib/types";
+import { Post, Reaction, PostReaction, Comment } from "@/lib/types";
 import React, { useState } from "react";
 import PostForm from "./post-form";
 import Image from "next/image";
+import PostModal from "./post-modal";
 
-const posts = [
+const posts: Post[] = [
   {
     id: 1,
     author: {
@@ -18,8 +19,9 @@ const posts = [
     },
     content:
       "আমার নাম কি ? ফিজিক্সের সাথে এর কোন সম্পরক আছে? এই বিশয়ে কেউ আমাকে সাহায্য করবে।",
+    image: "post-img-1.png",
     timestamp: "6m ago",
-    reaction: [
+    reactions: [
       {
         type: "like" as Reaction,
         user: {
@@ -46,7 +48,70 @@ const posts = [
       },
     ],
     likes_count: 24,
-    comments: 8,
+    comment_count: 8,
+    comments: [
+      {
+        id: "1",
+        author: {
+          id: 4,
+          name: "রহিম উদ্দিন",
+          avatar:
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
+        },
+        content: "এই পোস্টটি খুবই তথ্যবহুল। ধন্যবাদ!",
+        timestamp: "২ ঘন্টা আগে",
+        satisfiedCount: 5,
+        replies: [
+          {
+            id: "1-1",
+            author: {
+              id: 5,
+              name: "করিম আহমেদ",
+              avatar:
+                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+            },
+            content: "আমি একমত। খুব ভালো পোস্ট!",
+            timestamp: "১ ঘন্টা আগে",
+          },
+        ],
+      },
+      {
+        id: "2",
+        author: {
+          id: 5,
+          name: "সুমন চৌধুরী",
+          avatar:
+            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+        },
+        content: "খুব সুন্দর লেখা!",
+        timestamp: "৩ ঘন্টা আগে",
+        satisfiedCount: 3,
+      },
+      {
+        id: "2",
+        author: {
+          id: 5,
+          name: "সুমন চৌধুরী",
+          avatar:
+            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+        },
+        content: "খুব সুন্দর লেখা!",
+        timestamp: "৩ ঘন্টা আগে",
+        satisfiedCount: 3,
+      },
+      {
+        id: "2",
+        author: {
+          id: 5,
+          name: "সুমন চৌধুরী",
+          avatar:
+            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+        },
+        content: "খুব সুন্দর লেখা!",
+        timestamp: "৩ ঘন্টা আগে",
+        satisfiedCount: 3,
+      },
+    ],
     shares: 3,
   },
   {
@@ -61,7 +126,7 @@ const posts = [
     content:
       "একটি বুলেটকে 40 ms¹ বেগে খাড়া উপরের দিকে নিক্ষেপ করা হলো। ভূমি হতে 45 m উচ্চতায় একটি পাতলা কাঠ থাকায়  এখানে কাঠের কাঠ না পুরুত্ব ও কাঠ ভেদ করার সময় অতি নগণ্য। গ.সর্বোচ্চ উচ্চতায় উঠতে বুলেটটির কত সময় লাগবে? ঘ. বুলেটের গতিপথে পাতলা কাঠ না থাকলে বুলেটটি একই উচ্চতায় উঠতো কিনা - বিশ্লেষণ কর।",
     timestamp: "30m ago",
-    reaction: [
+    reactions: [
       {
         type: "wow" as Reaction,
         user: {
@@ -100,7 +165,8 @@ const posts = [
       },
     ],
     likes_count: 15,
-    comments: 3,
+    comment_count: 3,
+    comments: [],
     shares: 1,
   },
 ];

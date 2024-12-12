@@ -14,14 +14,25 @@ export interface PostReaction {
   isFollowing: boolean;
 }
 
+export interface Comment {
+  id: string;
+  author: User;
+  content: string;
+  timestamp: string;
+  replies?: Comment[];
+  satisfiedCount?: number;
+}
+
 export interface Post {
   id: number;
   author: User;
   content: string;
+  image?: string;
   timestamp: string;
-  reaction: PostReaction[];
+  reactions: PostReaction[];  
   likes_count: number;
-  comments: number;
+  comment_count: number;
+  comments: Comment[];
   shares: number;
 }
 

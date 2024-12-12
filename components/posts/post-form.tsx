@@ -51,8 +51,8 @@ const PostForm = ({ isOpen, onClose }: PostFormProps) => {
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="fixed inset-0 flex items-center justify-center p-4 ">
-        <DialogPanel className="bg-gray-100 rounded-lg w-full max-w-2xl p-4 max-h-[80vh] overflow-y-auto no-scrollbar">
-          <div className="flex justify-between items-center py-4">
+        <DialogPanel className="bg-gray-100 rounded-lg w-full max-w-2xl max-h-[80vh] overflow-y-auto no-scrollbar">
+          <div className="flex justify-between items-center p-4 sticky top-0 bg-gray-100 z-10">
             <button
               onClick={onClose}
               className="focus:outline-none p-2 rounded-lg hover:bg-gray-100"
@@ -67,7 +67,7 @@ const PostForm = ({ isOpen, onClose }: PostFormProps) => {
             </button>
           </div>
           {/* Tabs Section */}
-          <TabGroup>
+          <TabGroup className={"p-4"}>
             <TabList className="flex space-x-4">
               {tabs.map((tab) => (
                 <Tab
@@ -95,7 +95,7 @@ const PostForm = ({ isOpen, onClose }: PostFormProps) => {
           </TabGroup>
 
           {/* Form */}
-          <form className="mt-6 space-y-4">
+          <form className="mt-6 space-y-4 p-4">
             {/* Subject & Chapter */}
             {selectedTab === "বিষয় ভিত্তিক" && (
               <div className="grid grid-cols-2 gap-4">

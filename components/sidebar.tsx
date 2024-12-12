@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const navigation = [
   { name: "ফিড", href: "/", icon: "home.svg" },
-  { name: "গ্রুপ", href: "#", icon: "user-group.svg" },
+  { name: "গ্রুপ", href: "/group", icon: "user-group.svg" },
   { name: "লিডারবোর্ড", href: "#", icon: "ranking.svg" },
   { name: "নোটিস", href: "#", icon: "notice.svg" },
   { name: "মার্কেটপ্লেস", href: "/marketplace", icon: "shopping-bag.svg" },
