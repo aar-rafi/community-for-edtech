@@ -12,19 +12,25 @@ export default function MainLayout({
   heroSection,
 }: MainLayoutProps) {
   return (
-    <>
-      {heroSection && <div className="w-full">{heroSection}</div>}
-      <main className="container mx-auto py-6">
-        <div className="grid grid-cols-1 md:grid-cols-[27%_auto] lg:grid-cols-[27%_43%_27%] gap-6">
-          <div className="hidden md:block auto-cols-max">
-            <Sidebar />
-          </div>
-          <div className="auto-cols-max">{children}</div>
-          {rightPanel && (
-            <div className="hidden lg:block auto-cols-max">{rightPanel}</div>
-          )}
+    <main className="container mx-auto py-6">
+      <div className="grid grid-cols-1 md:grid-cols-[27%_auto] lg:grid-cols-[27%_43%_27%] gap-6">
+        {/* Sidebar - Always visible */}
+        <div className="hidden md:block auto-cols-max">
+          <Sidebar />
         </div>
-      </main>
-    </>
+
+        {/* Main content area with hero section and content */}
+        <div className="lg:col-span-2">
+          {/* Hero section spans middle + right columns */}
+          {heroSection && <div className="w-full mb-6">{heroSection}</div>}
+
+          {/* Content grid for middle and right sections */}
+          <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
+            <div className="auto-cols-max">{children}</div>
+            {rightPanel && <div className="auto-cols-max">{rightPanel}</div>}
+          </div>
+        </div>
+      </div>
+    </main>
   );
 }
