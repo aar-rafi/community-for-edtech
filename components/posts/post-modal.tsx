@@ -82,7 +82,7 @@ function CommentComponent({
   onReply: (parentId: string) => void;
 }) {
   return (
-    <div className="py-3">
+    <div className="py-3 relative">
       {/* <div className="absolute left-0 translate-x-7 top-14 w-8 h-1/2"> */}
       {/* <div className="absolute left-0 top-0 h-full border-l-2 border-b-2 border-gray-200 rounded-bl-xl" /> */}
       {/* </div> */}
@@ -94,6 +94,9 @@ function CommentComponent({
           height={48}
           className="w-8 h-8 rounded-full object-cover"
         />
+        {comment.replies && comment.replies.length > 0 && (
+          <div className="absolute left-1 top-12 bottom-0 w-[2px] border-l-2 rounded-bl-lg border-gray-200 bg-gray-200"></div>
+        )}
         <div className="flex-1">
           <div className="bg-gray-100 rounded-2xl px-4 py-2">
             <h4 className="font-medium text-sm">{comment.author.name}</h4>
@@ -122,20 +125,22 @@ function CommentComponent({
           </div>
 
           {/* Nested replies */}
-          {comment.replies && comment.replies.length > 0 && (
-            <div className="relative pl-4">
-              <div className="absolute left-0 top-4 w-8 h-6">
-                <div className="absolute left-0 top-0 w-4 h-full border-l-2 border-b-2 border-gray-200 rounded-bl-xl" />
-              </div>
-              {comment.replies.map((reply) => (
+          {
+            comment.replies &&
+              comment.replies.length > 0 &&
+              // <div className="relative pl-4">
+              // <div className="absolute left-0 top-4 w-8 h-6">
+              // <div className="absolute left-0 top-0 w-4 h-full border-l-2 border-b-2 border-gray-200 rounded-bl-xl" />
+              // </div>
+              comment.replies.map((reply) => (
                 <CommentComponent
                   key={reply.id}
                   comment={reply}
                   onReply={onReply}
                 />
-              ))}
-            </div>
-          )}
+              ))
+            // </div>
+          }
         </div>
       </div>
     </div>
@@ -299,7 +304,7 @@ export default function PostModal({ post, isOpen, onClose }: PostModalProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-2xl max-h-[80vh] transform overflow-y-auto no-scrollbar  rounded-2xl bg-white shadow-xl transition-all">
+              <DialogPanel className="w-full max-w-2xl max-h-[80vh] transform overflow-y-auto no-scrollbar rounded-2xl bg-white shadow-xl transition-all">
                 {/* Close button */}
                 <div className="flex justify-between p-4 items-center sticky top-0 bg-white z-10">
                   <DialogTitle className="text-lg font-medium flex-1 text-center">

@@ -1,8 +1,7 @@
 import MainLayout from "@/components/mainlayout";
-import Image from "next/image";
 import React from "react";
 
-const marketpalce = () => {
+export default function groupPage({ params }: { params: { groupId: string } }) {
   return (
     <MainLayout
       heroSection={
@@ -15,15 +14,7 @@ const marketpalce = () => {
         </div>
       }
     >
-      <Image
-        src="marketplace.svg"
-        alt="Marketplace"
-        width={270}
-        height={1500}
-        className="w-full object-cover m-8 p-8"
-      />
+      <div className="max-w-2xl bg-white rounded-2xl border-[1px] p-5 space-y-4" />
     </MainLayout>
   );
-};
-
-export default marketpalce;
+}

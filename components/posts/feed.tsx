@@ -1,11 +1,10 @@
 "use client";
 
 import PostCard from "@/components/posts/post-card";
-import { Post, Reaction, PostReaction, Comment } from "@/lib/types";
-import React, { useState } from "react";
+import { Post, Reaction } from "@/lib/types";
+import { useState } from "react";
 import PostForm from "./post-form";
 import Image from "next/image";
-import PostModal from "./post-modal";
 
 const posts: Post[] = [
   {
@@ -73,6 +72,17 @@ const posts: Post[] = [
             content: "আমি একমত। খুব ভালো পোস্ট!",
             timestamp: "১ ঘন্টা আগে",
           },
+          {
+            id: "1-2",
+            author: {
+              id: 5,
+              name: "করিম আহমেদ",
+              avatar:
+                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+            },
+            content: "আমি একমত। খুব ভালো পোস্ট!",
+            timestamp: "১ ঘন্টা আগে",
+          },
         ],
       },
       {
@@ -88,7 +98,7 @@ const posts: Post[] = [
         satisfiedCount: 3,
       },
       {
-        id: "2",
+        id: "3",
         author: {
           id: 5,
           name: "সুমন চৌধুরী",
@@ -100,7 +110,7 @@ const posts: Post[] = [
         satisfiedCount: 3,
       },
       {
-        id: "2",
+        id: "4",
         author: {
           id: 5,
           name: "সুমন চৌধুরী",
@@ -110,6 +120,19 @@ const posts: Post[] = [
         content: "খুব সুন্দর লেখা!",
         timestamp: "৩ ঘন্টা আগে",
         satisfiedCount: 3,
+        replies: [
+          {
+            id: "4-1",
+            author: {
+              id: 5,
+              name: "করিম আহমেদ",
+              avatar:
+                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
+            },
+            content: "আমি একমত। খুব ভালো পোস্ট!",
+            timestamp: "১ ঘন্টা আগে",
+          },
+        ],
       },
     ],
     shares: 3,
@@ -186,17 +209,6 @@ export default function Feed() {
 
   return (
     <div className="space-y-4 overflow-y-auto">
-      {/* <div className="rounded-2xl border bg-card p-4">
-        <textarea
-          placeholder="Share something with the community..."
-          className="min-h-[100px] w-full resize-none rounded-lg border bg-background p-3 text-sm focus:outline-none"
-        />
-        <div className="mt-3 flex justify-end">
-          <button className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
-            Post
-          </button>
-        </div>
-      </div> */}
       <div
         onClick={handleModalToggle}
         className="p-4 border rounded-lg shadow cursor-pointer bg-white items-center justify-between"

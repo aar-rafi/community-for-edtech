@@ -27,7 +27,9 @@ export default function MainLayout({
           {/* Content grid for middle and right sections */}
           <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-6">
             <div className="auto-cols-max">{children}</div>
-            {rightPanel && <div className="auto-cols-max">{rightPanel}</div>}
+            {rightPanel && (
+              <div className="hidden md:block auto-cols-max">{rightPanel}</div>
+            )}
           </div>
         </div>
       </div>
