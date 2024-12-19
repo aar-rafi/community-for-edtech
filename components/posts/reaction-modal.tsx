@@ -21,20 +21,20 @@ interface ReactionModalProps {
   //   reactionCounts: Record<Reaction, number>;
 }
 
+const reactionTypes: Record<string, { emoji: string; label: string }> = {
+  all: { emoji: "সব রিয়েক্ট", label: "👥" },
+  like: { emoji: "👍", label: "লাইক" },
+  love: { emoji: "❤️", label: "লাভ" },
+  haha: { emoji: "😄", label: "হাহা" },
+  wow: { emoji: "😮", label: "ওয়াও" },
+};
+
 export default function ReactionModal({
   isOpen,
   onClose,
   reactions,
 }: //   reactionCounts,
 ReactionModalProps) {
-  const reactionTypes: Record<string, { emoji: string; label: string }> = {
-    all: { emoji: "সব রিয়েক্ট", label: "👥" },
-    like: { emoji: "👍", label: "লাইক" },
-    love: { emoji: "❤️", label: "লাভ" },
-    haha: { emoji: "😄", label: "হাহা" },
-    wow: { emoji: "😮", label: "ওয়াও" },
-  };
-
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />

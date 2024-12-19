@@ -4,6 +4,7 @@ import { Bell, Ellipsis } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import Image from "next/image";
+import FriendList from "./friendlist";
 
 const notifications = [
   {
@@ -144,7 +145,7 @@ export default function RightPanel() {
         </div>
       </div>
 
-      <div className="rounded-2xl border bg-card p-4">
+      {/* <div className="rounded-2xl border bg-card p-4">
         <div className="mb-4 flex justify-between">
           <h3 className="font-semibold text-xl p-2">আপনার সহপাঠী</h3>
           <Ellipsis className="text-muted-foreground" />
@@ -165,8 +166,8 @@ export default function RightPanel() {
                 )}
               </div>
               <div className="flex-1">
-                <p className="text-lg font-regular">{friend.name}</p>
-                {/* <span
+                <p className="text-lg font-regular">{friend.name}</p> */}
+      {/* <span
                   className={`text-xs ${
                     friend.status === "online"
                       ? "text-green-500"
@@ -175,11 +176,12 @@ export default function RightPanel() {
                 >
                   {friend.status}
                 </span> */}
-              </div>
+      {/* </div>
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
+      <FriendList />
     </div>
   );
 }

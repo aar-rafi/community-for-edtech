@@ -12,9 +12,9 @@ import { X } from "lucide-react";
 import Image from "next/image";
 
 const tabs = [
-  { name: "বিষয় ভিত্তিক", icon: "library.svg" },
-  { name: "কোর্স সম্পর্কিত", icon: "message-question.svg" },
-  { name: "অন্যান্য", icon: "saturn.svg" },
+  { name: "বিষয় ভিত্তিক", icon: "/library.svg" },
+  { name: "কোর্স সম্পর্কিত", icon: "/message-question.svg" },
+  { name: "অন্যান্য", icon: "/saturn.svg" },
 ];
 
 interface PostFormProps {
@@ -49,7 +49,7 @@ const PostForm = ({ isOpen, onClose }: PostFormProps) => {
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+      <div className="fixed inset-0 bg-black/30" />
       <div className="fixed inset-0 flex items-center justify-center p-4 ">
         <DialogPanel className="bg-gray-100 rounded-lg w-full max-w-2xl max-h-[80vh] overflow-y-auto no-scrollbar">
           <div className="flex justify-between items-center p-4 sticky top-0 bg-gray-100 z-10">

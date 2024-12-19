@@ -5,6 +5,7 @@ import { Post, Reaction } from "@/lib/types";
 import { useState } from "react";
 import PostForm from "./post-form";
 import Image from "next/image";
+import PostSomething from "./post-something";
 
 const posts: Post[] = [
   {
@@ -195,9 +196,9 @@ const posts: Post[] = [
 ];
 
 const postFormTabs = [
-  { name: "বিষয় ভিত্তিক", icon: "library.svg" },
-  { name: "কোর্স সম্পর্কিত", icon: "message-question.svg" },
-  { name: "অন্যান্য", icon: "saturn.svg" },
+  { name: "বিষয় ভিত্তিক", icon: "/library.svg" },
+  { name: "কোর্স সম্পর্কিত", icon: "/message-question.svg" },
+  { name: "অন্যান্য", icon: "/saturn.svg" },
 ];
 
 export default function Feed() {
@@ -209,7 +210,7 @@ export default function Feed() {
 
   return (
     <div className="space-y-4 overflow-y-auto">
-      <div
+      {/* <div
         onClick={handleModalToggle}
         className="p-4 border rounded-lg shadow cursor-pointer bg-white items-center justify-between"
       >
@@ -250,7 +251,9 @@ export default function Feed() {
       <PostForm
         isOpen={formModalOpen}
         onClose={() => setFormModalOpen(false)}
-      />
+      /> */}
+
+      <PostSomething />
 
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />

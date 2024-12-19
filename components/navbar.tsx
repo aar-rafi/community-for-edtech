@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className="container flex items-center gap-8">
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="Logo.svg"
+                src="/Logo.svg"
                 alt="ACS"
                 width={49}
                 height={60}
@@ -61,9 +61,12 @@ export default function Navbar() {
             <button className="rounded-full p-2 hover:bg-secondary">
               <MessageSquare className="h-5 w-5" />
             </button>
-            <button className="rounded-full p-2 hover:bg-secondary">
+            <Link
+              href={"/profile"}
+              className="rounded-full p-2 hover:bg-secondary"
+            >
               <User className="h-5 w-5" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

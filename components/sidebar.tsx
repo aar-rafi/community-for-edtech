@@ -7,21 +7,21 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navigation = [
-  { name: "ফিড", href: "/", icon: "home.svg" },
-  { name: "গ্রুপ", href: "/group", icon: "user-group.svg" },
-  { name: "লিডারবোর্ড", href: "#", icon: "ranking.svg" },
-  { name: "নোটিস", href: "#", icon: "notice.svg" },
-  { name: "মার্কেটপ্লেস", href: "/marketplace", icon: "shopping-bag.svg" },
+  { name: "ফিড", href: "/", icon: "/home.svg" },
+  { name: "গ্রুপ", href: "/group", icon: "/user-group.svg" },
+  { name: "লিডারবোর্ড", href: "/leaderboard", icon: "/ranking.svg" },
+  { name: "নোটিস", href: "#", icon: "/notice.svg" },
+  { name: "মার্কেটপ্লেস", href: "/marketplace", icon: "/shopping-bag.svg" },
 ];
 
 const Subjects = [
-  { name: "সকল বিষয়", icon: "all-sub.svg" },
-  { name: "বাংলা", icon: "bangla.svg" },
-  { name: "ইংরেজি", icon: "english.svg" },
-  { name: "উচ্চতর গণিত", icon: "higher_math.svg" },
-  { name: "পদার্থবিজ্ঞান", icon: "phy.svg" },
-  { name: "সাধারণ গণিত", icon: "general_math.svg" },
-  { name: "জীববিজ্ঞান", icon: "biology.svg" },
+  { name: "সকল বিষয়", icon: "/all-sub.svg" },
+  { name: "বাংলা", icon: "/bangla.svg" },
+  { name: "ইংরেজি", icon: "/english.svg" },
+  { name: "উচ্চতর গণিত", icon: "/higher_math.svg" },
+  { name: "পদার্থবিজ্ঞান", icon: "/phy.svg" },
+  { name: "সাধারণ গণিত", icon: "/general_math.svg" },
+  { name: "জীববিজ্ঞান", icon: "/biology.svg" },
   // { name: "সামাজিক বিজ্ঞান", icon: "social-science.svg" },
   // { name: "ধর্ম", icon: "religion.svg" },
   // { name: "শারীরিক শিক্ষা", icon: "physical-education.svg" },
@@ -157,7 +157,7 @@ export default function Sidebar() {
       </div>
 
       <div className="rounded-2xl border bg-card p-6">
-        <h3 className="pl-2 pb-3 text-xl font-semibold">My Groups</h3>
+        <h3 className="pl-2 pb-3 text-xl font-medium">সাবজেক্ট ফিল্টার</h3>
         <div className="space-y-2">
           {Subjects.map((subject) => (
             <Link
