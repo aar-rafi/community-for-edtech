@@ -4,7 +4,6 @@ import MainLayout from "@/components/mainlayout";
 import Image from "next/image";
 import {
   Dialog,
-  DialogDescription,
   DialogPanel,
   DialogTitle,
   Tab,

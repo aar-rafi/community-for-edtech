@@ -23,11 +23,25 @@ export interface Comment {
   satisfiedCount?: number;
 }
 
+export interface PollOption {
+  id: string;
+  text: string;
+  votes: number;
+}
+
+export interface Poll {
+  question: string;
+  options: PollOption[];
+  totalVotes: number;
+  userVote?: string; // ID of the option user voted for
+}
+
 export interface Post {
   id: number;
   author: User;
   content: string;
   image?: string;
+  poll?: Poll;
   timestamp: string;
   reactions: PostReaction[];  
   likes_count: number;

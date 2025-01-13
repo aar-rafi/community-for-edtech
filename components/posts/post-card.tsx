@@ -44,6 +44,15 @@ export default function PostCard({ post }: { post: Post }) {
   const [postModalOpen, setPostModalOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
+  const [selectedPollOption, setSelectedPollOption] = useState<string | null>(
+    post.poll?.userVote || null
+  );
+
+  const handleVote = (optionId: string) => {
+    // In a real app, this would make an API call to update the vote
+    setSelectedPollOption(optionId);
+  };
+
   const hadlePostClick = (post: Post) => {
     setSelectedPost(post);
     setPostModalOpen((prev) => !prev);
@@ -120,6 +129,57 @@ export default function PostCard({ post }: { post: Post }) {
 
         {/* Content */}
         <div className="text-gray-800 text-xl">{post.content}</div>
+
+        {/* Poll */}
+        {post.poll && (
+          <div className="mt-4 rounded-lg border p-4">
+            <h3 className="mb-4 font-medium">{post.poll.question}</h3>
+            <div className="space-y-2">
+              {post.poll.options?.map((option) => {
+                const percentage =
+                  post.poll?.totalVotes ?? 0 > 0
+                    ? Math.round(
+                        (option.votes / (post.poll?.totalVotes ?? 0)) * 100
+                      )
+                    : 0;
+
+                return (
+                  <button
+                    key={option.id}
+                    onClick={() => handleVote(option.id)}
+                    disabled={selectedPollOption !== null}
+                    className={`relative w-full rounded-lg border p-3 text-left ${
+                      selectedPollOption === option.id
+                        ? "border-primary bg-primary/10"
+                        : "hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="relative z-10 flex items-center justify-between">
+                      <span>{option.text}</span>
+                      {selectedPollOption !== null && (
+                        <span className="text-sm font-medium">
+                          {percentage}%
+                        </span>
+                      )}
+                    </div>
+                    {selectedPollOption !== null && (
+                      <div
+                        className="absolute inset-0 rounded-lg bg-gray-100"
+                        style={{
+                          width: `${percentage}%`,
+                          transition: "width 0.3s ease-in-out",
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-sm text-gray-500">
+              {post.poll.totalVotes} votes
+            </p>
+          </div>
+        )}
 
         {/* Image */}
         <div className="rounded-lg overflow-hidden">

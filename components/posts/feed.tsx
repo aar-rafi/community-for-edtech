@@ -18,8 +18,18 @@ const posts: Post[] = [
       role: "Higher Math",
     },
     content:
-      "আমার নাম কি ? ফিজিক্সের সাথে এর কোন সম্পরক আছে? এই বিশয়ে কেউ আমাকে সাহায্য করবে।",
-    image: "post-img-1.png",
+      "আমার নাম কি ? ফিজিক্সের সাথে এর কোন সম্পরক আছে? এই বিশয়ে কেউ আমাকে সাহায্য করবে।",
+    poll: {
+      question:
+        "বাংলাদেশের সবার মুক্তিযুদ্ধের সময় মুক্তিবাহিনীর সরকারের প্রধানমন্ত্রীর ভূমিকা কে পালন করেছিলেন?",
+      options: [
+        { id: "1", text: "সৈয়দ নজরুল ইসলাম", votes: 15 },
+        { id: "2", text: "সৈয়দ নজরুল ইসলাম", votes: 8 },
+        { id: "3", text: "মাওলানা ভাসানী", votes: 12 },
+        { id: "4", text: "জিয়াউর রহমান", votes: 5 },
+      ],
+      totalVotes: 40,
+    },
     timestamp: "6m ago",
     reactions: [
       {
@@ -40,103 +50,17 @@ const posts: Post[] = [
           id: 3,
           name: "করিম খান",
           avatar:
-            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400",
+            "https://images.unsplash.com/photo-1535713875002-d3d416303d12?w=400",
           role: "Student",
         },
         timestamp: "4m ago",
         isFollowing: true,
       },
     ],
-    likes_count: 24,
-    comment_count: 8,
-    comments: [
-      {
-        id: "1",
-        author: {
-          id: 4,
-          name: "রহিম উদ্দিন",
-          avatar:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
-        },
-        content: "এই পোস্টটি খুবই তথ্যবহুল। ধন্যবাদ!",
-        timestamp: "২ ঘন্টা আগে",
-        satisfiedCount: 5,
-        replies: [
-          {
-            id: "1-1",
-            author: {
-              id: 5,
-              name: "করিম আহমেদ",
-              avatar:
-                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-            },
-            content: "আমি একমত। খুব ভালো পোস্ট!",
-            timestamp: "১ ঘন্টা আগে",
-          },
-          {
-            id: "1-2",
-            author: {
-              id: 5,
-              name: "করিম আহমেদ",
-              avatar:
-                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-            },
-            content: "আমি একমত। খুব ভালো পোস্ট!",
-            timestamp: "১ ঘন্টা আগে",
-          },
-        ],
-      },
-      {
-        id: "2",
-        author: {
-          id: 5,
-          name: "সুমন চৌধুরী",
-          avatar:
-            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-        },
-        content: "খুব সুন্দর লেখা!",
-        timestamp: "৩ ঘন্টা আগে",
-        satisfiedCount: 3,
-      },
-      {
-        id: "3",
-        author: {
-          id: 5,
-          name: "সুমন চৌধুরী",
-          avatar:
-            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-        },
-        content: "খুব সুন্দর লেখা!",
-        timestamp: "৩ ঘন্টা আগে",
-        satisfiedCount: 3,
-      },
-      {
-        id: "4",
-        author: {
-          id: 5,
-          name: "সুমন চৌধুরী",
-          avatar:
-            "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-        },
-        content: "খুব সুন্দর লেখা!",
-        timestamp: "৩ ঘন্টা আগে",
-        satisfiedCount: 3,
-        replies: [
-          {
-            id: "4-1",
-            author: {
-              id: 5,
-              name: "করিম আহমেদ",
-              avatar:
-                "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400",
-            },
-            content: "আমি একমত। খুব ভালো পোস্ট!",
-            timestamp: "১ ঘন্টা আগে",
-          },
-        ],
-      },
-    ],
-    shares: 3,
+    likes_count: 1400,
+    comment_count: 43,
+    comments: [],
+    shares: 12,
   },
   {
     id: 2,
@@ -202,60 +126,36 @@ const postFormTabs = [
 ];
 
 export default function Feed() {
-  const [formModalOpen, setFormModalOpen] = useState(false);
+  const [isPostFormOpen, setIsPostFormOpen] = useState(false);
+  const [feedPosts, setFeedPosts] = useState<Post[]>(posts);
 
-  const handleModalToggle = () => {
-    setFormModalOpen((prev) => !prev);
+  const handleNewPost = (post: Partial<Post>) => {
+    const newPost: Post = {
+      id: feedPosts.length + 1,
+      author: {
+        id: 1,
+        name: "আমান হাসান",
+        avatar:
+          "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",
+        role: "Admin",
+      },
+      ...post,
+    } as Post;
+
+    setFeedPosts([newPost, ...feedPosts]);
   };
 
   return (
-    <div className="space-y-4 overflow-y-auto">
-      {/* <div
-        onClick={handleModalToggle}
-        className="p-4 border rounded-lg shadow cursor-pointer bg-white items-center justify-between"
-      >
-        <div className="flex items-center p-1 flex-shrink-0">
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400"
-            }
-            alt="avatar"
-            width={50}
-            height={50}
-            className="h-12 w-12 rounded-full"
-          />
-          <div className="ml-4">
-            <p className="text-lg font-medium">রহিম আহমেদ</p>
-            <p className="text-gray-500 text-sm mt-1">
-              কমিউনিটিতে কিছু জিজ্ঞাসা করুন!
-            </p>
-          </div>
-        </div>
-        <hr className="border-t border-dashed border-gray-300 my-4" />
-        <div className="flex items-center justify-between mt-3">
-          {postFormTabs.map((tab) => (
-            <div key={tab.name} className="flex items-center text-lg p-2">
-              <Image
-                src={tab.icon}
-                alt={tab.name}
-                width={24}
-                height={24}
-                className="mr-1"
-              />
-              {tab.name}
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="mx-auto max-w-2xl space-y-4 p-4">
+      <PostSomething onClick={() => setIsPostFormOpen(true)} />
 
       <PostForm
-        isOpen={formModalOpen}
-        onClose={() => setFormModalOpen(false)}
-      /> */}
+        isOpen={isPostFormOpen}
+        onClose={() => setIsPostFormOpen(false)}
+        onSubmit={handleNewPost}
+      />
 
-      <PostSomething />
-
-      {posts.map((post) => (
+      {feedPosts.map((post) => (
         <PostCard key={post.id} post={post} />
       ))}
     </div>

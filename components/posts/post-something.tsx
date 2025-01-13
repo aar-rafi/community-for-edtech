@@ -9,17 +9,24 @@ const postFormTabs = [
   { name: "অন্যান্য", icon: "/saturn.svg" },
 ];
 
-export default function PostSomething() {
-  const [formModalOpen, setFormModalOpen] = useState(false);
+interface PostSomethingProps {
+  onClick: () => void;
+}
+
+export default function PostSomething({ onClick }: PostSomethingProps) {
+  const [isPostFormOpen, setIsPostFormOpen] = useState(false);
 
   const handleModalToggle = () => {
-    setFormModalOpen((prev) => !prev);
+    setIsPostFormOpen((prev) => !prev);
   };
 
   return (
     <div>
       <div
-        onClick={handleModalToggle}
+        onClick={() => {
+          handleModalToggle();
+          onClick();
+        }}
         className="p-4 border rounded-lg shadow cursor-pointer bg-white items-center justify-between"
       >
         <div className="flex items-center p-1 flex-shrink-0">
@@ -57,8 +64,8 @@ export default function PostSomething() {
       </div>
 
       <PostForm
-        isOpen={formModalOpen}
-        onClose={() => setFormModalOpen(false)}
+        isOpen={isPostFormOpen}
+        onClose={() => setIsPostFormOpen(false)}
       />
     </div>
   );
